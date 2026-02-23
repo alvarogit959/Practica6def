@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_reparto_empleado,access_reparto_empleado,model_reparto_empleado,base.group_user,1,1,1,1
+access_reparto_vehiculo,access_reparto_vehiculo,model_reparto_vehiculo,base.group_user,1,1,1,1
+access_reparto_cliente,access_reparto_cliente,model_reparto_cliente,base.group_user,1,1,1,1
+access_reparto_reparto,access_reparto_reparto,model_reparto_reparto,base.group_user,1,1,1,1

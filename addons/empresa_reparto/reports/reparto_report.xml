@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_repartos_pendientes_empleado">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="empleado">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>Repartos Pendientes - <t t-esc="empleado.nombre"/> <t t-esc="empleado.apellidos"/></h2>
+                                <p><strong>DNI:</strong> <t t-esc="empleado.dni"/></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Cliente</th>
+                                            <th>Vehículo</th>
+                                            <th>Fecha recepción</th>
+                                            <th>Urgencia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="repartos_pendientes" t-value="empleado.reparto_ids.filtered(lambda r: r.estado == 'no_salido')"/>
+                                        <t t-foreach="repartos_pendientes" t-as="r">
+                                            <tr>
+                                                <td><t t-esc="r.codigo"/></td>
+                                                <td><t t-esc="r.cliente_id.nombre or ''"/> <t t-esc="r.cliente_id.apellidos or ''"/></td>
+                                                <td><t t-esc="r.vehiculo_id.tipo or ''"/></td>
+                                                <td><t t-esc="r.fecha_recepcion"/></td>
+                                                <td><t t-esc="r.urgencia"/></td>
+                                            </tr>
+                                        </t>
+                                        <t t-if="not repartos_pendientes">
+                                            <tr>
+                                                <td colspan="5" style="text-align: center;">No hay repartos pendientes</td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_reparto" model="ir.actions.report">
+        <field name="name">Repartos pendientes</field>
+        <field name="model">reparto.empleado</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">empresa_reparto.report_repartos_pendientes_empleado</field>
+        <field name="report_file">empresa_reparto.report_repartos_pendientes_empleado</field>
+        <field name="binding_model_id" ref="model_reparto_empleado"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Repartos_Pendientes_%s' % (object.nombre)</field>
+    </record>
+</odoo>

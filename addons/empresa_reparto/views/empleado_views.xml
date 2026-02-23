@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_empleado_list" model="ir.ui.view">
+        <field name="name">empleado.list</field>
+        <field name="model">reparto.empleado</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="dni"/>
+                <field name="telefono"/>
+                <field name="carnet_ciclomotor"/>
+                <field name="carnet_furgoneta"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_empleado_form" model="ir.ui.view">
+        <field name="name">empleado.form</field>
+        <field name="model">reparto.empleado</field>
+        <field name="arch" type="xml">
+            <form string="Empleado">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_repartos_pendientes"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-print"
+                                string="Repartos Pendientes"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="apellidos"/>
+                            <field name="dni"/>
+                            <field name="telefono"/>
+                        </group>
+                        <group>
+                            <field name="carnet_ciclomotor"/>
+                            <field name="carnet_furgoneta"/>
+                            <field name="foto" widget="image"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

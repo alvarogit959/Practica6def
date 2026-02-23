@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_reparto_list" model="ir.ui.view">
+        <field name="name">reparto.list</field>
+        <field name="model">reparto.reparto</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="estado == 'camino'"
+                decoration-success="estado == 'entregado'"
+                decoration-muted="estado == 'no_salido'">
+                <field name="empleado_id"/>
+                <field name="vehiculo_id"/>
+                <field name="cliente_id"/>
+                <field name="fecha_recepcion"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_repartos_view" model="ir.actions.act_window">
+        <field name="name">Repartos</field>
+        <field name="res_model">reparto.reparto</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_open_wizard': True}</field>
+    </record>
+
+</odoo>
